@@ -87,6 +87,13 @@
   font-weight: 400;
 }
 
+.headlineLag {
+  max-width: 30ch;
+  color: var(--color-subtle);
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));

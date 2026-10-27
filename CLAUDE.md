@@ -55,9 +55,10 @@ Target: Python · FastAPI · Pydantic · SQLAlchemy · PostgreSQL · Next.js + T
 Pandas / NumPy. ML progresses upward from statistics and linear regression; simple models
 before complex ones.
 
-> The existing `client/` + `server/` in this repo are the React/Vite + Express **landing
-> site**, which predates the charter. Where the platform's FastAPI backend should live is not
-> yet settled — see `docs/decisions/`.
+> This repository is the platform: FastAPI in `backend/`, Next.js in `frontend/`, ingestion in
+> `pipelines/`. The React/Vite + Express landing site lives outside it — see
+> `docs/decisions/0001-platform-repository-layout.md`. The stage 1 pipeline is documented in
+> `docs/pipeline.md`.
 
 Every major technology must solve a problem that has actually appeared. No technology because
 it is fashionable, and AI last rather than first.

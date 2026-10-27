@@ -77,6 +77,10 @@ function SeriesPanel({ series }: { series: Series }) {
 
   const fmt = (v: number | null) => (v === null ? '—' : v.toFixed(1));
 
+  // Without this, a series that ends six days ago reads as a pipeline that stopped. Reanalysis
+  // is built after the fact, so the newest day is never today, and the page should say so.
+  const daysBehind = latest ? daysSince(latest.observed_on) : null;
+
   return (
     <section className={styles.panel}>
       <div className={styles.panelHead}>
@@ -107,6 +111,13 @@ function SeriesPanel({ series }: { series: Series }) {
             <span className="num">{fmt(latest?.value ?? null)}</span>
             <span className={styles.headlineUnit}>{series.unit}</span>
           </span>
+          {daysBehind !== null && (
+            <span className={styles.headlineLag}>
+              <span className="num">{daysBehind}</span> {daysBehind === 1 ? 'day' : 'days'} ago
+              {series.provenance.provenance === 'reanalysis' &&
+                '. Reanalysis is published days after the fact, so the newest value is never today.'}
+            </span>
+          )}
         </div>
       </div>
 
@@ -143,4 +154,11 @@ function SeriesPanel({ series }: { series: Series }) {
       />
     </section>
   );
+}
+
+/** Whole days from an ISO date (YYYY-MM-DD) to today, both taken as UTC calendar days. */
+function daysSince(isoDay: string): number {
+  const now = new Date();
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return Math.round((today - Date.parse(isoDay)) / 86_400_000);
 }
