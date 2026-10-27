@@ -1,0 +1,33 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--color-heading);
+}
+
+.mark {
+  flex: none;
+}
+
+.terrace {
+  fill: none;
+  stroke: currentColor;
+}
+
+.leaf {
+  fill: none;
+  stroke: currentColor;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 12;
+}
+
+/* Only the seed carries the accent. */
+.seed {
+  fill: var(--color-gold);
+}
+
+.wordmark {
+  display: block;
+  width: auto;
+  height: 0.95rem;
+}

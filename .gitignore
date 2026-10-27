@@ -1,0 +1,93 @@
+# SHAZA -- repository ignore rules.
+#
+# Two things this file is protecting:
+#   1. Secrets and local state never reach the history.
+#   2. Charter section 12: large datasets do not go into git. Document where the data came
+#      from instead. See docs/repository.md.
+
+# --- secrets and local configuration ---
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# --- Python ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# --- local databases ---
+# Postgres is the target. A local SQLite file is developer state, not source.
+*.db
+*.sqlite
+*.sqlite3
+
+# --- Node / Next.js (frontend/.gitignore repeats these; this is the safety net) ---
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# --- data ---
+# Everything under raw/ and processed/ is ignored by default, including the big formats that
+# tend to arrive by accident. Committing a dataset must be a deliberate act (`git add -f`),
+# never a side effect of `git add .`. The READMEs that describe each directory are kept.
+data/raw/*
+data/processed/*
+data/synthetic/*
+!data/**/README.md
+!data/**/*.yaml
+!data/**/*.yml
+
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.nc
+*.nc4
+*.grib
+*.grib2
+*.h5
+*.hdf5
+*.tif
+*.tiff
+*.zip
+*.gz
+*.tar
+*.7z
+# Small, hand-maintained reference tables are source, not data. Keep them.
+!**/reference/*.csv
+!**/fixtures/*.csv
+
+# --- ML artefacts ---
+# A trained model is an output. It is reproducible from code, data and a seed; the experiment
+# record in ml/experiments/ is what carries the result.
+ml/models/*
+!ml/models/README.md
+*.pkl
+*.joblib
+*.onnx
+*.pt
+*.pth
+
+# --- editors and operating systems ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- logs and scratch ---
+*.log
+.coverage
+htmlcov/
+dist/
+build/

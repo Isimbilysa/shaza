@@ -1,0 +1,67 @@
+.figure {
+  margin: 0;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.grid {
+  stroke: var(--color-grid);
+  stroke-width: 1;
+}
+
+.axis {
+  stroke: var(--color-border-strong);
+  stroke-width: 1;
+}
+
+/* Brand guide section 7: every number in Plex Mono. Axis ticks are numbers. */
+.axisLabel {
+  fill: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The provenance stamp lives inside the plot frame so it cannot be cropped away. */
+.stamp {
+  fill: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-wide);
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+}
+
+.unit {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+}
+
+.empty {
+  padding: var(--space-7) 0;
+  color: var(--color-subtle);
+  font-size: var(--text-sm);
+  text-align: center;
+}
